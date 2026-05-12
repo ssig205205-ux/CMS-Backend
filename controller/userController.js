@@ -20,8 +20,8 @@ const login = async (req, res) => {
     const token = await User.login(email, password);
     res.cookie("token", token, {
     httpOnly: true,
-    secure: false,
-    sameSite: "Lax",
+    secure: true,
+    sameSite: "none",
     maxAge: 5 * 60 * 1000
 });
     const { name } = await User.findOne({ email });
