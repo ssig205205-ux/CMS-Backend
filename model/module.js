@@ -17,7 +17,7 @@ const customerSchema = new mongoose.Schema(
     CusId: {
       type: String,
       default:"_",
-      unique: true,
+      unique: false,
       index: true
 
     },
