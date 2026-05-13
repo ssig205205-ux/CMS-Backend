@@ -17,7 +17,8 @@ app.use(cookieParser());
 app.use(cors({
    origin: [
         "http://localhost:5173",
-        "https://pcms-c16pms85o-min-thu-kyaw-s-projects.vercel.app"
+        "https://pcms-c16pms85o-min-thu-kyaw-s-projects.vercel.app",
+        "https://pcms-liart.vercel.app"
     ],
   credentials: true
 }));
