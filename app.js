@@ -15,7 +15,10 @@ const URL = process.env.URL
 
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173",
+   origin: [
+        "http://localhost:5173",
+        "https://pcms-c16pms85o-min-thu-kyaw-s-projects.vercel.app"
+    ],
   credentials: true
 }));
 
