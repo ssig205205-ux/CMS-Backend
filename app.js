@@ -3,9 +3,11 @@ const app = express();
 const route = require("./Route/route");
 const authRoute = require("./Route/Login&Sigin")
 const leadRoute = require("./Route/leadRoute")
+const adminRoute = require("./Route/adminRoutes")
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authMiddleWare = require("./middleWare/userAuth");
+const adminMiddleWare = require("./middleWare/adminAuth");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 
@@ -26,8 +28,8 @@ app.use(cors({
 
 app.use(express.json());
 
-
-app.use("/api/user", authRoute)
+app.use("/api/admin", adminMiddleWare, adminRoute);
+app.use("/api/user", authRoute);
 app.use(authMiddleWare);
 app.use("/api/user", route);
 app.use("/api/lead", leadRoute)

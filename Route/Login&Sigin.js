@@ -9,4 +9,5 @@ AuthRouter.route("/login").post(login);
 AuthRouter.route("/me").get(authMiddleWare,getCurrentUser);
 AuthRouter.route("/logout").post(logout);
 
+
 module.exports = AuthRouter;

@@ -2,8 +2,8 @@ const Lead = require("../model/leadmodel");
 
 const leadShow = async (req, res) => {
   try {
-    const userid = req.user;
-    const leads = await Lead.find({ userid });
+    const {userId} = req.user;
+    const leads = await Lead.find({ userid: userId });
     res.status(200).json(leads);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -16,8 +16,8 @@ const createLead = async (req, res) => {
     return res.status(400).json({ error: "Name and phone are required" });
   }
   try {
-    const userid = req.user;
-    const lead = await Lead.create({ ...data, userid });
+    const { userId, Team } = req.user;
+    const lead = await Lead.create({ ...data, userid: userId, Team });
     res.status(201).json(lead);
   } catch (error) {
     res.status(500).json({ error: error.message });

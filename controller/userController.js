@@ -2,8 +2,8 @@ const User = require("../model/userModel");
 
 const signUp = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
-    const user = await User.signUp(  email, password, name);
+    const { email, password, name , UserType ,Team } = req.body;
+    const user = await User.signUp(  email, password, name, UserType, Team);
     res.status(200).json({ message: "User created successfully" });
   } catch (error) {
     console.log(error);
@@ -18,14 +18,15 @@ const login = async (req, res) => {
       throw new Error("Email and password are required");
     }
     const token = await User.login(email, password);
+    
     res.cookie("token", token, {
     httpOnly: true,
     secure: true,
     sameSite: "none",
     maxAge: 30 * 24 * 60 * 60 * 1000
 });
-    const { name } = await User.findOne({ email });
-    res.status(200).json({ message: "Login successful",  user: { name } });
+    const { name, UserType} = await User.findOne({ email });
+    res.status(200).json({ message: "Login successful",  user: { name, UserType } });
    
   } catch (error) {
     console.log(error);
@@ -35,11 +36,11 @@ const login = async (req, res) => {
 
 const getCurrentUser = async (req, res) => {
   try {
-   const userId = req.user;
+   const  {userId} = req.user;
    console.log(userId)
-   const { name } = await User.findOne({ _id: userId });
+   const { name, UserType } = await User.findOne({ _id: userId });
    
-   res.status(200).json({ message: "Login successful",  user: { name } });
+   res.status(200).json({ message: "Login successful",  user: { name, UserType } });
   }
   catch (error) {
     console.log(error);
@@ -59,9 +60,11 @@ const logout = (req, res) => {
 }
 
 
+
 module.exports = {
   signUp,
   login,
   getCurrentUser,
-  logout
+  logout,
+
 };

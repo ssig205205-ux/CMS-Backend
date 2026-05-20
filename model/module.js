@@ -3,112 +3,107 @@ const mongoose = require("mongoose");
 const customerSchema = new mongoose.Schema(
   {
     userid: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
-      index: true
-
+      index: true,
     },
     name: {
       type: String,
       required: true,
-      index: true
-
+      index: true,
     },
     CusId: {
       type: String,
-      default:"_",
+      default: "_",
       unique: false,
-      index: true
-
+      index: true,
     },
     CusPwd: {
       type: String,
-      default:"_",
-      index: true
-
+      default: "_",
+      index: true,
     },
     nrc: {
       type: String,
       required: true,
-      index: true
-
+      index: true,
     },
     phone: {
       type: String,
       required: true,
-      index: true
-
+      index: true,
     },
     secondPhone: {
       type: String,
-      index: true
-
+      index: true,
     },
     address: {
       type: String,
       required: true,
-      index: true
-
+      index: true,
     },
     location: {
       lat: {
         type: Number,
         required: true,
-        index: true
-
+        index: true,
       },
       lng: {
         type: Number,
         required: true,
-        index: true
-
+        index: true,
       },
     },
     status: {
       type: String,
       default: "Pending",
-      index: true
-
+      index: true,
     },
     plan: {
       type: String,
       required: true,
-      index: true
-
+      index: true,
     },
     OrderDate: {
       type: Date,
       default: Date.now,
-      index: true
-
+      index: true,
     },
     requestDate: {
       type: Date,
       required: true,
-      index: true
-
+      index: true,
     },
     advanceMonth: {
       type: Number,
       required: true,
-      index: true
-
+      index: true,
     },
     promotion: {
       type: String,
-      index: true
-
+      index: true,
     },
     activeDate: {
       type: Date,
-      index: true
-
+      index: true,
     },
+    Team: {
+      type: String,
+      default: "none",
+      index: true,
+    },
+    userName:{
+      type: String,
+      required: true,
+      index: true,
+    }
+    
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 // 🔥 helper function
