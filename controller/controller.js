@@ -47,7 +47,7 @@ const sendOneData = async (req, res) => {
       const data = await Customer.findOne({ _id: id, userid: UserId });
       res.status(200).json(data);
     } else {
-    const data = await Customer.findOne({ _id: id ,userid:userId});
+    const data = await Customer.findOne({ _id: id , userid: userId});
     res.status(200).json(data);
     }
     
