@@ -17,20 +17,20 @@ const getData = async (req, res) => {
     const data = req.body;
     const {userId, Team , name, UserType} = req.user;
     console.log(userId, Team , name, UserType);
-    let userName;
+    let userNameData;
     let userID;
     if(UserType === "admin"){ 
-      userName = data.userName;
+      userNameData = data.userName;
       const { _id } = await User.findOne({ name: data.userName});
       if(!_id){
         return res.status(400).json({ error: "User not found" });
       }
       userID = _id;
     } else {
-      userName = name;
+      userNameData = name;
       userID = userId;
     }
-    await Customer.create({ ...data, userid: userID , Team, userName: name });
+    await Customer.create({ ...data, userid: userID , Team, userName: userNameData });
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
